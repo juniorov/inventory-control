@@ -1,7 +1,15 @@
 import express from 'express';
 import cors from 'cors';
+import sequelize from './config/database.js';
+import * as models from './database/models/index.js';
 
 const app = express();
+
+try {
+    sequelize.sync({ alter: true});
+}catch(error) {
+    console.log("error updating database", error)
+}
 
 //Middlewares
 app.use(cors());
