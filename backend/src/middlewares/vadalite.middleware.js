@@ -9,10 +9,21 @@ export const validateResult = (req, res, next) => {
     next();
 }
 
-export const validateDNI = [
-    body('dni')
+export const validateLogin = [
+    body('email')
         .trim()
-        .exists().withMessage('DNI es requerido'),
+        .isEmail()
+        .normalizeEmail()
+        .custom(async (value) => {
+            const user = await User.findOne({ where: { email: value } });
+            if(!user) {
+                throw new Error("Email is not registered, try with another one.");
+            }
+            return value;
+        }),
+    body('password')
+        .trim()
+        .notEmpty().withMessage('Password is required'),
     validateResult
 ];
 

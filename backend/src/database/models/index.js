@@ -12,7 +12,8 @@ Company.hasMany(User, {
     foreignKey: 'company_id',
     sourceKey: 'id',
     onDelete: 'RESTRICT',
-    onUpdate: 'RESTRICT'
+    onUpdate: 'RESTRICT',
+    as: 'users'
 });
 
 Company.hasMany(Batch, {
@@ -34,6 +35,7 @@ Company.hasMany(Customer, {
 User.belongsTo(Company, {
     foreignKey: 'company_id',
     sourceKey: 'id',
+    as: 'company'
 });
 
 // Batch Relations

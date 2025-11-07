@@ -16,21 +16,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// app.use('/api/v1', authRoutes);
+app.use('/api/v1', authRoutes);
 app.use('/api/v1', companyRoutes);
 
 // Health check
 app.get('/health', (req, res) => {
     res.json({ status: 'OK', timestamp: new Date().toISOString() });
 });
-
-// Manejo de errores 404
-// app.use('*', (req, res) => {
-//     res.status(404).json({
-//         error: 'Ruta no encontrada',
-//         path: req.originalUrl
-//     });
-// });
 
 // Middleware de errores global
 app.use((error, req, res, next) => {
