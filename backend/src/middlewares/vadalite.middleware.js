@@ -1,4 +1,5 @@
 import {validationResult, body, param} from 'express-validator';
+import { User } from '../database/models/index.js';
 
 export const validateResult = (req, res, next) => {
     const errors = validationResult(req);
@@ -12,5 +13,46 @@ export const validateDNI = [
     body('dni')
         .trim()
         .exists().withMessage('DNI es requerido'),
+    validateResult
+];
+
+export const validateCompany = [
+    body('dni')
+        .trim(),
+    body('name')
+        .trim()
+        .notEmpty().withMessage('Nombre de la empresa es requerido'),
+    body('description')
+        .trim(),
+    validateResult
+];
+
+export const validateCompanyIdParam = [
+    param("id", "Formato ID incorrecto")
+        .not().isEmpty()
+        .trim()
+        .isUUID(4)
+        .escape(),
+    validateResult,
+];
+
+export const validateUser = [
+    body('fullname')
+        .trim(),
+    body('email')
+        .trim()
+        .isEmail()
+        .normalizeEmail()
+        .custom(async (value) => {
+            const user = await User.findOne({ where: { email: value } });
+            if(user) {
+                throw new Error("Email is registered, try with another one.");
+            }
+            return value;
+        }),
+    body('password', "Formato Password incorrecto")
+        .trim()
+        .isLength({min: 6})
+        .withMessage('Min length is 6'),
     validateResult
 ];

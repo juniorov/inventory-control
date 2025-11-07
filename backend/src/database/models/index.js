@@ -11,6 +11,8 @@ import User from './User.js';
 Company.hasMany(User, {
     foreignKey: 'company_id',
     sourceKey: 'id',
+    onDelete: 'RESTRICT',
+    onUpdate: 'RESTRICT'
 });
 
 Company.hasMany(Batch, {
@@ -24,6 +26,12 @@ Company.hasMany(Product, {
 });
 
 Company.hasMany(Customer, {
+    foreignKey: 'company_id',
+    sourceKey: 'id',
+});
+
+// User Relations
+User.belongsTo(Company, {
     foreignKey: 'company_id',
     sourceKey: 'id',
 });
@@ -68,12 +76,6 @@ PreOrder.belongsTo(Customer, {
 
 // Product Relations
 Product.belongsTo(Company, {
-    foreignKey: 'company_id',
-    sourceKey: 'id',
-});
-
-// User Relations
-User.belongsTo(Company, {
     foreignKey: 'company_id',
     sourceKey: 'id',
 });

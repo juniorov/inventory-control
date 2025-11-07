@@ -22,6 +22,7 @@ const Company = sequelize.define('Company', {
 }, {
     tableName: 'companies',
     timestamps: true,
+    paranoid: true,
 });
 
 export default Company;

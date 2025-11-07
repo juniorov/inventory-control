@@ -1,21 +1,23 @@
 import express from 'express';
 import cors from 'cors';
 import sequelize from './config/database.js';
-import * as models from './database/models/index.js';
+import authRoutes from './routes/auth.routes.js';
+import companyRoutes from './routes/company.routes.js';
 
 const app = express();
 
-try {
-    sequelize.sync({ alter: true});
-}catch(error) {
-    console.log("error updating database", error)
-}
+// try {
+//     sequelize.sync({ alter: true});
+// }catch(error) {
+//     console.log("error updating database", error)
+// }
 
 //Middlewares
 app.use(cors());
 app.use(express.json());
 
-// app.use('/api/v1', requestsRoutes);
+// app.use('/api/v1', authRoutes);
+app.use('/api/v1', companyRoutes);
 
 // Health check
 app.get('/health', (req, res) => {
