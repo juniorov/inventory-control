@@ -17,6 +17,22 @@ const PreOrder = sequelize.define('PreOrder', {
         values: STATES,
         defaultValue: STATES[0]
     },
+    batch_id: {
+        type: DataTypes.UUID,
+        allowNull: true,
+        references: {
+            model: 'batches',
+            key: 'id'
+        }
+    },
+    customer_id: {
+        type: DataTypes.UUID,
+        allowNull: true,
+        references: {
+            model: 'customers',
+            key: 'id'
+        }
+    }
 }, {
     tableName: 'preorders',
     timestamps: true,

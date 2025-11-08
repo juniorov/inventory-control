@@ -31,6 +31,7 @@ const Batch = sequelize.define('Batch', {
 }, {
     tableName: 'batches',
     timestamps: true,
+    paranoid: true,
 });
 
 export default Batch;

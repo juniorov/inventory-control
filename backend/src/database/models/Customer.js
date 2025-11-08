@@ -32,6 +32,7 @@ const Customer = sequelize.define('Customer', {
 }, {
     tableName: 'customers',
     timestamps: true,
+    paranoid: true,
 });
 
 export default Customer;

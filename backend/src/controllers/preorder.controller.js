@@ -1,22 +1,26 @@
-import { CustomerService } from "../services/customer.service.js";
+import { PreOrderService } from "../services/preorder.service.js";
 
 export const create = async (req, res) => {
     try {
-        const { name, phone, address, company_id } = req.body;
+        const { state, qty, batch_id, customer_id } = req.body;
 
-        const customer = await CustomerService.create({
-            name,
-            phone,
-            address,
-            company_id,
+        const preorder = await PreOrderService.create({
+            state,
+            qty,
+            batch_id,
+            customer_id,
         });
+
+        if(preorder.error){
+            throw new Error("Error to create preorder.");
+        }
 
         res
             .status(201)
             .json({
                 success: true,
-                message: "Customer created successfully",
-                customer,
+                message: "PreOrder created successfully",
+                preorder,
             });
     } catch (error) {
         console.log(error);
@@ -27,12 +31,12 @@ export const create = async (req, res) => {
 export const show = async (req, res) => {
     try {
         const { id } = req.params;
-        const customer = await CustomerService.show(id);
+        const preorder = await PreOrderService.show(id);
 
         res.status(200).json({
             success: true,
             message: "",
-            customer,
+            preorder,
         });
     } catch (error) {
         console.log(error);
@@ -43,13 +47,13 @@ export const show = async (req, res) => {
 export const update = async (req, res) => {
     try {
         const { id } = req.params;
-        const { name, phone, address, company_id } = req.body;
-        await CustomerService.update({ id, name, phone, address, company_id });
+        const { state, qty, batch_id, customer_id } = req.body;
+        await PreOrderService.update({ id, state, qty, batch_id, customer_id });
 
         res.status(200).json({
             success: true,
-            message: "Customer updated successfully",
-            customer: { name, phone, address, company_id },
+            message: "PreOrder updated successfully",
+            preorder: { state, qty, batch_id, customer_id },
         });
     } catch (error) {
         console.log(error);
@@ -60,10 +64,10 @@ export const update = async (req, res) => {
 export const remove = async (req, res) => {
     try {
         const { id } = req.params;
-        await CustomerService.remove(id);
+        await PreOrderService.remove(id);
         res
             .status(200)
-            .json({ success: true, message: "Customer deleted successfully" });
+            .json({ success: true, message: "PreOrder deleted successfully" });
     } catch (error) {
         console.log(error);
         res.status(500).json({ error: error.message });

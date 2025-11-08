@@ -94,3 +94,46 @@ export const validateProduct = [
         .isUUID(4),
     validateResult
 ];
+
+export const validateBatch = [
+    body('description')
+        .trim()
+        .notEmpty(),
+    body('cost')
+        .trim()
+        .notEmpty()
+        .isFloat(),
+    body('estimate_qty')
+        .trim()
+        .notEmpty()
+        .isNumeric(),
+    body('real_qty')
+        .trim()
+        .notEmpty()
+        .isNumeric(),
+    body('date')
+        .trim()
+        .notEmpty()
+        .isDate(),
+    body('company_id')
+        .trim()
+        .isUUID(4),
+    validateResult
+];
+
+export const validatePreOrder = [
+    body('state')
+        .trim()
+        .notEmpty(),
+    body('qty')
+        .trim()
+        .notEmpty()
+        .isNumeric(),
+    body('batch_id')
+        .trim()
+        .isUUID(4),
+    body('customer_id')
+        .trim()
+        .isUUID(4),
+    validateResult
+];

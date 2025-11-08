@@ -51,6 +51,7 @@ const User = sequelize.define('User', {
 }, {
     tableName: 'users',
     timestamps: true,
+    paranoid: true,
 });
 
 User.prototype.validPassword = function(password) {
