@@ -44,7 +44,7 @@ export const update = async (req, res) => {
     try {
         const { id } = req.params;
         const { name, phone, address, company_id } = req.body;
-        await CustomerService.update({ id, name, phone, address, company_id });
+        await CustomerService.update({ name, phone, address, company_id });
 
         res.status(200).json({
             success: true,

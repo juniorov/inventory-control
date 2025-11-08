@@ -5,6 +5,7 @@ import authRoutes from './routes/auth.routes.js';
 import companyRoutes from './routes/company.routes.js';
 import customerRoutes from './routes/customer.routes.js';
 import productRoutes from './routes/product.routes.js';
+import batchRoutes from './routes/batch.routes.js';
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use('/api/v1', authRoutes);
 app.use('/api/v1', companyRoutes);
 app.use('/api/v1', customerRoutes);
 app.use('/api/v1', productRoutes);
+app.use('/api/v1', batchRoutes);
 
 // Health check
 app.get('/health', (req, res) => {

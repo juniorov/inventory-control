@@ -31,9 +31,15 @@ export const update = async (req, res) => {
     try {
         const {id} = req.params;
         const {dni, name, description} = req.body;
-        await CompanyService.update({id, dni, name, description});
+        await CompanyService.update({dni, name, description});
 
-        res.status(200).json({success: true, message: "Company updated successfully", company: {id, dni, name, description}});
+        res
+            .status(200)
+            .json({
+                success: true,
+                message: "Company updated successfully",
+                company: {id, dni, name, description}
+            });
     }catch(error) {
         console.log(error);
         res.status(500).json({ error: error.message });

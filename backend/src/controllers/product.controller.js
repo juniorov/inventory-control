@@ -40,13 +40,14 @@ export const update = async (req, res) => {
     try {
         const { id } = req.params;
         const { name, price, company_id } = req.body;
-        const product = await ProductService.update({ id, name, price, company_id });
+        await ProductService.update({ name, price, company_id });
 
         res
             .status(201)
             .json({
                 success: true,
                 message: "Product updated successfully",
+                product: { id, name, price, company_id }
             });
     }catch(error) {
         console.log(error);
