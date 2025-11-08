@@ -7,6 +7,7 @@ import customerRoutes from './routes/customer.routes.js';
 import productRoutes from './routes/product.routes.js';
 import batchRoutes from './routes/batch.routes.js';
 import preorderRoutes from './routes/preorder.routes.js';
+import paymentRoutes from './routes/payment.routes.js';
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use('/api/v1', customerRoutes);
 app.use('/api/v1', productRoutes);
 app.use('/api/v1', batchRoutes);
 app.use('/api/v1', preorderRoutes);
+app.use('/api/v1', paymentRoutes);
 
 // Health check
 app.get('/health', (req, res) => {

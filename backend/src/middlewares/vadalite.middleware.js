@@ -137,3 +137,24 @@ export const validatePreOrder = [
         .isUUID(4),
     validateResult
 ];
+
+export const validatePayment = [
+    body('date')
+        .trim()
+        .notEmpty()
+        .isDate(),
+    body('amount')
+        .trim()
+        .notEmpty()
+        .isFloat(),
+    body('type_payment')
+        .trim()
+        .notEmpty(),
+    body('batch_id')
+        .trim()
+        .isUUID(4),
+    body('preorder_id')
+        .trim()
+        .isUUID(4),
+    validateResult
+];

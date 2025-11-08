@@ -79,6 +79,9 @@ Customer.hasMany(PreOrder, {
 Batch.hasOne(Payment, {
     foreignKey: 'batch_id',
     sourceKey: 'id',
+    onDelete: 'RESTRICT',
+    onUpdate: 'RESTRICT',
+    as: 'payments'
 });
 
 PreOrder.belongsTo(Batch, {
@@ -91,6 +94,14 @@ PreOrder.belongsTo(Customer, {
     sourceKey: 'id',
 });
 
+PreOrder.hasOne(Payment, {
+    foreignKey: 'preorder_id',
+    sourceKey: 'id',
+    onDelete: 'RESTRICT',
+    onUpdate: 'RESTRICT',
+    as: 'preorders'
+});
+
 // Product Relations
 Product.belongsTo(Company, {
     foreignKey: 'company_id',
@@ -100,6 +111,11 @@ Product.belongsTo(Company, {
 // Payment reltions
 Payment.belongsTo(PreOrder, {
     foreignKey: 'preorder_id',
+    sourceKey: 'id',
+});
+
+Payment.belongsTo(Batch, {
+    foreignKey: 'batch_id',
     sourceKey: 'id',
 });
 

@@ -11,6 +11,10 @@ export const create = async (req, res) => {
             company_id,
         });
 
+        if(customer.error) {
+            throw new Error("Error to insert or update on table");
+        }
+
         res
             .status(201)
             .json({

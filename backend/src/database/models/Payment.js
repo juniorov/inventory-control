@@ -21,6 +21,22 @@ const Payment = sequelize.define('Payment', {
         type: DataTypes.DATEONLY,
         allowNull: false,
         defaultValue: DataTypes.NOW
+    },
+    batch_id: {
+        type: DataTypes.UUID,
+        allowNull: true,
+        references: {
+            model: 'batches',
+            key: 'id'
+        }
+    },
+    preorder_id: {
+        type: DataTypes.UUID,
+        allowNull: true,
+        references: {
+            model: 'preorders',
+            key: 'id'
+        }
     }
 }, {
     tableName: 'payments',
