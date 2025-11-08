@@ -13,10 +13,21 @@ const Customer = sequelize.define('Customer', {
     phone: {
         type: DataTypes.STRING,
         allowNull: true,
+        set(value) {
+            this.setDataValue('phone', value.replace("-", ""))
+        }
     },
     address: {
         type: DataTypes.TEXT,
         allowNull: true,
+    },
+    company_id: {
+        type: DataTypes.UUID,
+        allowNull: true,
+        references: {
+            model: 'companies',
+            key: 'id'
+        }
     }
 }, {
     tableName: 'customers',

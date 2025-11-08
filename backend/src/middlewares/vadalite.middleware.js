@@ -38,7 +38,7 @@ export const validateCompany = [
     validateResult
 ];
 
-export const validateCompanyIdParam = [
+export const validateIdParam = [
     param("id", "Formato ID incorrecto")
         .not().isEmpty()
         .trim()
@@ -65,5 +65,19 @@ export const validateUser = [
         .trim()
         .isLength({min: 6})
         .withMessage('Min length is 6'),
+    validateResult
+];
+
+export const validateCustomer = [
+    body('phone')
+        .trim(),
+    body('name')
+        .trim()
+        .notEmpty().withMessage('Nombre del cliente es requerido'),
+    body('address')
+        .trim(),
+    body('company_id')
+        .trim()
+        .isUUID(4),
     validateResult
 ];
