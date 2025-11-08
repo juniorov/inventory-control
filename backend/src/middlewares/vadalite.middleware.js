@@ -81,3 +81,16 @@ export const validateCustomer = [
         .isUUID(4),
     validateResult
 ];
+
+export const validateProduct = [
+    body('name')
+        .trim()
+        .notEmpty().withMessage('Nombre del producto es requerido'),
+    body('price')
+        .trim()
+        .isFloat(),
+    body('company_id')
+        .trim()
+        .isUUID(4),
+    validateResult
+];

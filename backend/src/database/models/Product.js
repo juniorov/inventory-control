@@ -13,6 +13,14 @@ const Product = sequelize.define('Product', {
     price: {
         type: DataTypes.FLOAT,
         defaultValue: 0,
+    },
+    company_id: {
+        type: DataTypes.UUID,
+        allowNull: true,
+        references: {
+            model: 'companies',
+            key: 'id'
+        }
     }
 }, {
     tableName: 'products',

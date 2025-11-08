@@ -4,6 +4,7 @@ import sequelize from './config/database.js';
 import authRoutes from './routes/auth.routes.js';
 import companyRoutes from './routes/company.routes.js';
 import customerRoutes from './routes/customer.routes.js';
+import productRoutes from './routes/product.routes.js';
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(express.json());
 app.use('/api/v1', authRoutes);
 app.use('/api/v1', companyRoutes);
 app.use('/api/v1', customerRoutes);
+app.use('/api/v1', productRoutes);
 
 // Health check
 app.get('/health', (req, res) => {
