@@ -4,9 +4,9 @@ import { validateCustomer, validateIdParam } from "../middlewares/vadalite.middl
 
 const router = Router();
 
-router.post('/customer', validateCustomer, create);
-router.get('/customer/:id', validateIdParam, show);
-router.patch('/customer/:id', validateCustomer, update);
-router.delete('/customer/:id', validateIdParam, remove);
+router.post('/customers', validateCustomer, create);
+router.get('/customers/:id', validateIdParam, show);
+router.patch('/customers/:id', validateCustomer, update);
+router.delete('/customers/:id', validateIdParam, remove);
 
 export default router;

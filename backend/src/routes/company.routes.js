@@ -4,10 +4,10 @@ import { validateCompany, validateIdParam, validateUser } from "../middlewares/v
 
 const router = Router();
 
-router.post('/company', validateCompany, validateUser, create);
-router.patch('/company/:id', validateIdParam, validateCompany, update);
-router.delete('/company/:id', validateIdParam, remove);
-router.get('/company/:id', validateIdParam, validateCompany, show);
+router.post('/companies', validateCompany, validateUser, create);
+router.patch('/companies/:id', validateIdParam, validateCompany, update);
+router.delete('/companies/:id', validateIdParam, remove);
+router.get('/companies/:id', validateIdParam, validateCompany, show);
 
 
 export default router;
