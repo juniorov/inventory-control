@@ -1,7 +1,6 @@
 import Batch from './Batch.js';
 import Company from './Company.js';
 import Customer from './Customer.js';
-import Inventory from './Inventory.js';
 import Payment from './Payment.js';
 import PreOrder from './PreOrder.js';
 import Product from './Product.js';
@@ -123,7 +122,6 @@ export {
     Batch,
     Company,
     Customer,
-    Inventory,
     Payment,
     PreOrder,
     Product,
