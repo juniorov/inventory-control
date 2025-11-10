@@ -1,9 +1,16 @@
-import { Batch } from "../database/models/index.js";
+import { Batch, Inventory } from "../database/models/index.js";
 
 export class BatchService {
     static async create(batchData) {
         try {
             const batch = await Batch.create(batchData);
+
+            // Inicializar inventario
+            await Inventory.create({
+                batch_id: batch.id,
+                current_quantity: batch.real_qty,
+                sold_quantity: 0
+            });
 
             return batch;
         } catch(error) {

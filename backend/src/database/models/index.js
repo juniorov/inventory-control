@@ -5,6 +5,7 @@ import Payment from './Payment.js';
 import PreOrder from './PreOrder.js';
 import Product from './Product.js';
 import User from './User.js';
+import Inventory from './Inventory.js';
 
 // Company Relations
 Company.hasMany(User, {
@@ -83,6 +84,14 @@ Batch.hasOne(Payment, {
     as: 'payments'
 });
 
+Batch.hasOne(Inventory, {
+    foreignKey: 'batch_id',
+    sourceKey: 'id',
+    onDelete: 'RESTRICT',
+    onUpdate: 'RESTRICT',
+    as: 'inventory'
+});
+
 PreOrder.belongsTo(Batch, {
     foreignKey: 'batch_id',
     sourceKey: 'id',
@@ -118,6 +127,12 @@ Payment.belongsTo(Batch, {
     sourceKey: 'id',
 });
 
+// Inventory relations
+Inventory.belongsTo(Batch, {
+    foreignKey: 'batch_id',
+    sourceKey: 'id',
+});
+
 export {
     Batch,
     Company,
@@ -125,5 +140,6 @@ export {
     Payment,
     PreOrder,
     Product,
-    User
+    User,
+    Inventory,
 };

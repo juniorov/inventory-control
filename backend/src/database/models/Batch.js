@@ -12,7 +12,7 @@ const Batch = sequelize.define('Batch', {
         allowNull: true,
     },
     cost: {
-        type: DataTypes.FLOAT,
+        type: DataTypes.JSONB,
         defaultValue: 0
     },
     estimate_qty: {
