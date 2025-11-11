@@ -11,12 +11,12 @@ import paymentRoutes from './routes/payment.routes.js';
 
 const app = express();
 
-try {
-    // sequelize.sync({ alter: true});
-    sequelize.sync({ force: true});
-}catch(error) {
-    console.log("error updating database", error)
-}
+// try {
+//     // sequelize.sync({ alter: true});
+//     sequelize.sync({ force: true});
+// }catch(error) {
+//     console.log("error updating database", error)
+// }
 
 //Middlewares
 app.use(cors());

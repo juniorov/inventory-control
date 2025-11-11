@@ -7,12 +7,32 @@ const Batch = sequelize.define('Batch', {
         primaryKey: true,
         defaultValue: DataTypes.UUIDV4,
     },
-    description: {
+    name:{
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    ingredients: {
         type: DataTypes.TEXT,
         allowNull: true,
     },
+    company_id: {
+        type: DataTypes.UUID,
+        allowNull: false,
+        references: {
+            model: 'companies',
+            key: 'id'
+        }
+    },
+    product_id: {
+        type: DataTypes.UUID,
+        allowNull: false,
+        references: {
+            model: 'products',
+            key: 'id'
+        }
+    },
     cost: {
-        type: DataTypes.JSONB,
+        type: DataTypes.FLOAT,
         defaultValue: 0
     },
     estimate_qty: {
@@ -27,7 +47,7 @@ const Batch = sequelize.define('Batch', {
         type: DataTypes.DATEONLY,
         allowNull: false,
         defaultValue: DataTypes.NOW
-    }
+    },
 }, {
     tableName: 'batches',
     timestamps: true,

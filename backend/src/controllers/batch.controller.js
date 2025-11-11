@@ -2,8 +2,9 @@ import { BatchService } from "../services/batch.service.js";
 
 export const create = async(req, res) => {
     try {
-        const {description, cost, estimate_qty, real_qty, date, company_id} = req.body;
-        const batch = await BatchService.create({description, cost, estimate_qty, real_qty, date, company_id});
+        console.table(req.body);
+        const {name, ingredients, cost, estimate_qty, real_qty, date, company_id, product_id} = req.body;
+        const batch = await BatchService.create({name, ingredients, cost, estimate_qty, real_qty, date, company_id, product_id});
 
         res
             .status(201)
@@ -39,15 +40,15 @@ export const show = async(req, res) => {
 export const update = async(req, res) => {
     try {
         const {id} = req.params;
-        const {description, cost, estimate_qty, real_qty, date, company_id} = req.body;
-        await BatchService.update({id,description, cost, estimate_qty, real_qty, date, company_id});
+        const {name,ingredients, cost, estimate_qty, real_qty, date, company_id, product_id} = req.body;
+        await BatchService.update({id,name,ingredients, cost, estimate_qty, real_qty, date, company_id, product_id});
 
         res
             .status(201)
             .json({
                 success: true,
                 message: "Batch created successfully",
-                batch: {description, cost, estimate_qty, real_qty, date},
+                batch: {name,ingredients, cost, estimate_qty, real_qty, date, company_id, product_id},
             });
     }catch(error) {
         console.log(error);

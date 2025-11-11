@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { validateIdParam, validatePreOrder } from "../middlewares/vadalite.middleware.js";
+import { validateIdParam, validatePreOrder } from "../middlewares/validate.middleware.js";
 import { create, remove, show, update } from "../controllers/preorder.controller.js";
 
 const router = Router();

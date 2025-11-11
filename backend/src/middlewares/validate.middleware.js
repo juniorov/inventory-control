@@ -96,7 +96,10 @@ export const validateProduct = [
 ];
 
 export const validateBatch = [
-    body('description')
+    body('ingredients')
+        .trim()
+        .notEmpty(),
+    body('name')
         .trim()
         .notEmpty(),
     body('cost')
@@ -116,6 +119,9 @@ export const validateBatch = [
         .notEmpty()
         .isDate(),
     body('company_id')
+        .trim()
+        .isUUID(4),
+    body('product_id')
         .trim()
         .isUUID(4),
     validateResult

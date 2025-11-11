@@ -32,8 +32,8 @@ export class BatchService {
 
     static async update(batchData) {
         try {
-            const {id, description, cost, estimate_qty, real_qty, date} = batchData;
-            const batch = await Batch.update({description, cost, estimate_qty, real_qty, date}, { where: { id } });
+            const {id, name, ingredients, cost, estimate_qty, real_qty, date} = batchData;
+            const batch = await Batch.update({name, ingredients, cost, estimate_qty, real_qty, date}, { where: { id } });
 
             return batch;
         } catch(error) {

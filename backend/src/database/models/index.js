@@ -24,13 +24,13 @@ Company.hasMany(Batch, {
     as: 'batches'
 });
 
-Company.hasMany(Product, {
-    foreignKey: 'company_id',
-    sourceKey: 'id',
-    onDelete: 'RESTRICT',
-    onUpdate: 'RESTRICT',
-    as: 'products'
-});
+// Company.hasMany(Product, {
+//     foreignKey: 'product_id',
+//     sourceKey: 'id',
+//     onDelete: 'RESTRICT',
+//     onUpdate: 'RESTRICT',
+//     as: 'products'
+// });
 
 Company.hasMany(Customer, {
     foreignKey: 'company_id',
@@ -61,21 +61,11 @@ Batch.hasOne(PreOrder, {
     as: 'preorders'
 });
 
-// Customer
-Customer.belongsTo(Company, {
-    foreignKey: 'company_id',
+Batch.belongsTo(Product, {
+    foreignKey: 'product_id',
     sourceKey: 'id',
 });
 
-Customer.hasMany(PreOrder, {
-    foreignKey: 'customer_id',
-    sourceKey: 'id',
-    onDelete: 'RESTRICT',
-    onUpdate: 'RESTRICT',
-    as: 'preorders'
-});
-
-// Preorder relations
 Batch.hasOne(Payment, {
     foreignKey: 'batch_id',
     sourceKey: 'id',
@@ -92,6 +82,21 @@ Batch.hasOne(Inventory, {
     as: 'inventory'
 });
 
+// Customer
+Customer.belongsTo(Company, {
+    foreignKey: 'company_id',
+    sourceKey: 'id',
+});
+
+Customer.hasMany(PreOrder, {
+    foreignKey: 'customer_id',
+    sourceKey: 'id',
+    onDelete: 'RESTRICT',
+    onUpdate: 'RESTRICT',
+    as: 'preorders'
+});
+
+// Preorder relations
 PreOrder.belongsTo(Batch, {
     foreignKey: 'batch_id',
     sourceKey: 'id',
@@ -113,6 +118,11 @@ PreOrder.hasOne(Payment, {
 // Product Relations
 Product.belongsTo(Company, {
     foreignKey: 'company_id',
+    sourceKey: 'id',
+});
+
+Product.hasMany(Batch, {
+    foreignKey: 'product_id',
     sourceKey: 'id',
 });
 

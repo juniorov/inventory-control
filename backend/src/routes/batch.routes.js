@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { create, remove, show, update } from "../controllers/batch.controller.js";
-import { validateBatch, validateIdParam } from "../middlewares/vadalite.middleware.js";
+import { validateBatch, validateIdParam } from "../middlewares/validate.middleware.js";
 
 const router = Router();
 
