@@ -12,7 +12,7 @@ export const create = async (req, res) => {
         });
 
         if(preorder.error){
-            throw new Error("Error to create preorder.");
+            throw new Error("Error to create preorder: " + preorder.message);
         }
 
         res
